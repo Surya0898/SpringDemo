@@ -31,7 +31,7 @@ public class ContactService {
                 .orElseThrow(() -> new ContactNotFoundException("Contact not found with ID: " + id));
     }
 
-    public Contact createContact(Contact contact, int userId){
+    public Contact createContact(Contact contact, Long userId){
         User user = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("User not found with ID: " + userId));
         contact.setUser(user);
         return contactRepository.save(contact);

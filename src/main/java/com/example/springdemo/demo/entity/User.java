@@ -17,7 +17,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @NotBlank(message = "Name cannot be blank")
     @Column(name = "name")
@@ -28,16 +28,16 @@ public class User {
     @Column(name = "age")
     private int age;
 
-    @NotBlank
+    @NotBlank(message = "Role is required")
     private String role;
 
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Address> addresses = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Contact> contacts = new ArrayList<>();
 
@@ -53,23 +53,23 @@ public class User {
 
     }
 
-    public User(int id, String name, int age){
+    public User(Long id, String name, int age){
         this.id = id;
         this.name = name;
         this.age = age;
     }
 
-    public User(int id, String name, int age, String role){
+    public User(Long id, String name, int age, String role){
         this.id = id;
         this.name = name;
         this.age = age;
         this.role = role;
     }
 
-    public void setId(int id){
+    public void setId(Long id){
         this.id = id;
     }
-    public int getId(){
+    public Long getId(){
         return id;
     }
     public void setName(String name){
@@ -95,4 +95,13 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
 }

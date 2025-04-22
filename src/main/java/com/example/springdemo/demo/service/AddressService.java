@@ -29,7 +29,7 @@ public class AddressService {
         return addressRepository.findById(id).orElseThrow(()-> new RuntimeException("Address not found with:"+id));
     }
 
-    public Address createAddress(Address address, int userId){
+    public Address createAddress(Address address, Long userId){
         User user = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("User not found with ID: " + userId));
         address.setUser(user);
         return addressRepository.save(address);

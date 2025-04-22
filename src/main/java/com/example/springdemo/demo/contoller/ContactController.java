@@ -31,7 +31,7 @@ public class ContactController {
     }
 
     @PostMapping("/user/{id}")
-    public Contact createContact(@PathVariable int id, @RequestBody Contact contact){
+    public Contact createContact(@PathVariable Long id, @RequestBody Contact contact){
         return contactService.createContact(contact,id);
     }
 

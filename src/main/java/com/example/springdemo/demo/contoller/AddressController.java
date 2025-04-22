@@ -29,7 +29,7 @@ public class AddressController {
     }
 
     @PostMapping("/user/{userId}")
-    public Address createAddress(@PathVariable int userId, @RequestBody Address address) {
+    public Address createAddress(@PathVariable Long userId, @RequestBody Address address) {
         return addressService.createAddress(address, userId);
     }
 
